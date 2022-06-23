@@ -4,6 +4,7 @@ import {QuickStartComponent} from "./quick-start/quick-start.component";
 import {MobileComponent} from "./mobile/mobile.component";
 import {CustomIconsComponent} from "./custom-icons/custom-icons.component";
 import {GeojsonComponent} from "./geojson/geojson.component";
+import {ChoroplethComponent} from "./choropleth/choropleth.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     component: GeojsonComponent,
     path: 'geojson',
+  },
+  {
+    component: ChoroplethComponent,
+    path: 'choropleth',
   },
 ]
 
