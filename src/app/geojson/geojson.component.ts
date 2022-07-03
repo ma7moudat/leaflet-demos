@@ -1,6 +1,10 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {circleMarker, geoJSON, map, Map, PathOptions, tileLayer} from "leaflet";
-import {Feature, LineString} from "geojson";
+import {circleMarker, GeoJSON, geoJSON, GeoJSONOptions, map, Map, PathOptions, tileLayer} from "leaflet";
+import {Feature, GeoJsonObject, LineString} from "geojson";
+
+declare module "leaflet" {
+  function geoJSON<P = any>(geojson?: GeoJsonObject | GeoJsonObject[], options?: GeoJSONOptions<P>): GeoJSON<P>;
+}
 
 const geojsonFeature: Feature = {
   "type": "Feature",
@@ -87,10 +91,9 @@ export class GeojsonComponent implements AfterViewInit, OnDestroy {
       }),
     }).addTo(mapInstance)
 
-    const myLinesLayer = geoJSON(undefined,{ style: myStyle}).addTo(mapInstance)
-    myLines.forEach((line) => myLinesLayer.addData(line))
+    const myLinesLayer = geoJSON(myLines,{ style: myStyle}).addTo(mapInstance)
 
-    const statesLayer = geoJSON(undefined, {
+    const statesLayer = geoJSON(states, {
       style(feature): PathOptions {
         switch (feature?.properties?.party) {
           case 'Republic': return { color: '#ff0000'}
@@ -99,7 +102,6 @@ export class GeojsonComponent implements AfterViewInit, OnDestroy {
         }
       }
     }).addTo(mapInstance)
-    states.forEach((state) => statesLayer.addData(state))
   }
 
   ngOnDestroy() {
