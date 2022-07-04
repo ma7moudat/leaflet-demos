@@ -5,6 +5,7 @@ import {MobileComponent} from "./mobile/mobile.component";
 import {CustomIconsComponent} from "./custom-icons/custom-icons.component";
 import {GeojsonComponent} from "./geojson/geojson.component";
 import {ChoroplethComponent} from "./choropleth/choropleth.component";
+import {LayersControlComponent} from "./layers-control/layers-control.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     component: ChoroplethComponent,
     path: 'choropleth',
+  },
+  {
+    component: LayersControlComponent,
+    path: 'layers-control',
   },
 ]
 
